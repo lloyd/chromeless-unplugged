@@ -1,0 +1,9 @@
+{
+    "build_id": "20110214184307", 
+    "vendor": "Mozilla", 
+    "name": "Chromeless Unplugged", 
+    "resizable": true, 
+    "menubars": true, 
+    "developer_email": "lloyd@hilaiel.com", 
+    "version": "0.1"
+}
