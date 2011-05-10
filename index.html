@@ -39,7 +39,7 @@
 
 
 
-    <title>The title of your presentation</title>
+    <title>chromeless unplugged</title>
 
         <!--
         ************************************
@@ -276,7 +276,7 @@ window.onload = function() {
           // FIXME : Mandatory for flex box model for vertical align
           // Firefox bug :(
           slides[i - 1].innerHTML = "<div>" + slides[i - 1].innerHTML + "</div>";
-          window.history[(i == 1? 'replace' : 'push') + 'State'](i, title + " ("+ i +"/"+ il +")", "#"+i);
+//          window.history[(i == 1? 'replace' : 'push') + 'State'](i, title + " ("+ i +"/"+ il +")", "#"+i);
         }
 
         var footer = document.createElement("footer");
@@ -286,13 +286,14 @@ window.onload = function() {
           '<p class="flex-space"></p>' + 
           '<p id="index"><span class="pagenumber"></span> / ' + il +'</p>';
         document.body.appendChild(footer);
-        history.go(- slides.length + firstFrame);
+        window.location.hash = "#" + firstFrame;
+      }
 
-
-        window.addEventListener("popstate", function(e) {
-          if(e.state) {
+      function loadSlide(num) {
+          console.log("got popstate", num);
+          if(num) {
             var old = document.querySelector("section[aria-selected]");
-            var next = document.querySelector("section:nth-of-type("+ e.state +")");
+            var next = document.querySelector("section:nth-of-type("+ num +")");
 
             if (old) {
               old.removeAttribute("aria-selected");
@@ -308,12 +309,10 @@ window.onload = function() {
               }
             }
 
-
             var index = document.querySelector("#index .pagenumber");
-            index.innerHTML = e.state;
+            index.innerHTML = num;
           }
-        }, true); 
-      }
+        }
 
       function resize() {
         var style = document.getElementById("resizeStyle");
@@ -329,9 +328,13 @@ window.onload = function() {
       window.addEventListener("load", resize, true);
       window.addEventListener("load", init, true);
 
-      // Webkit bug
-      // window.addEventListener("hashchange", init, true); // FIXME Webkit fires hashchange when it shouldn't
+      window.addEventListener("hashchange", function(e) {
+                                                 loadSlide(parseInt(window.location.hash.split("#")[1], 10));
+                                                 }, true);
+
       window.addEventListener("keydown", function(e) {
+        var curFrame = window.location.hash? parseInt(window.location.hash.split("#")[1], 10) : 1;
+
         // Don't intercept keyboard shortcuts
         if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
           return;
@@ -342,7 +345,7 @@ window.onload = function() {
             || e.keyCode == 33 // page up
         ) {
           e.preventDefault();
-          history.back();
+          window.location.hash = "#" + (--curFrame);
         }
         if (   e.keyCode == 78 // n
             || e.keyCode == 32 // space
@@ -350,7 +353,7 @@ window.onload = function() {
             || e.keyCode == 34 // page down
         ) {
           e.preventDefault();
-          history.forward();
+          window.location.hash = "#" + (++curFrame);
         }
       }, true);
     </script>
