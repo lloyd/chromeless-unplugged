@@ -72,7 +72,12 @@
         footer .flex-space { -moz-box-flex: 1; -webkit-box-flex: 1; }
         section { -moz-transition-property: -moz-transform, opacity; -moz-transition-duration: 1s, 1s; pointer-events: none; display: block; width: 100%; margin: auto; position: absolute; padding: 0 10px; opacity: 0; -moz-box-sizing: border-box; }
         section { -webkit-transition-property: -webkit-transform, opacity; -webkit-transition-duration: 1s, 1s; pointer-events: none; -webkit-box-sizing: border-box; }
-        section h1, section h2, section h3, section p { text-align: center; margin: .3em; margin: 0; padding: 0; }
+        section h1, section h2, section h3, section p { text-align: center; margin: .3em; margin: 0; padding: 0; margin-bottom: .5em; }
+        section h1 { font-size: 100%; }
+        section h2 { font-size: 80%; }
+        section h3 { font-size: 60%; }
+        section h4 { font-size: 40%; }
+        section h5 { font-size: 30%; }
         section[aria-selected] { opacity: 1; pointer-events: auto; -moz-transition-delay: 1s, 1s; -webkit-transition-delay: 1s, 1s; }
         pre { font-size: 35px; border-left: 6px solid white; padding-left: 10px; white-space: pre-wrap;       /* css-3 */ word-wrap: break-word;       /* Internet Explorer 5.5+ */ line-height: 1.3em; } 
         a { color: white!important; text-decoration: none; }
@@ -186,10 +191,31 @@
 
           /* The nothing effect */
           /* Well, just comment the rotating and sliding effect*/
-
-
         }
 
+        div.floaty > * {
+          float: left;
+        }
+        div.textbox {
+          background-color: #333;
+          color: #ddd;
+          padding: 1em;
+          -moz-border-radius: 1em;
+        }
+
+        div.textbox b {
+          font-size: 120%;
+        }
+
+        div.textbox i {
+          font-size: 90%;
+          font-sytle: italics;
+        }
+
+        div.realbig {
+          font-size: 200%;
+          margin: .5em;
+        }
       </style>
     </head>
 
@@ -202,11 +228,20 @@
         -->
 
       <section>
-        <h1>BOooooooYaaa!</h1>
+          <h1>Chromeless (Unplugged)</h1>
+        <h2>Desktop apps with web tech</h2>
+             <h3>  2011.05.12 </h3>
+        <h4> Lloyd Hilaiel | Mozilla </h4>
       </section>
 
       <section>
-        <h1>This is a h1</h1>
+        <div class="floaty" style="font-size: 50%">
+          <div class="textbox" style="margin-top: .5em"> <b>Web Resources</b> <br> <i>HTML, CSS, JS</i> </div> 
+          <div class="realbig">+</div>
+          <div class="textbox"><b>Chromeless</b> <br> <i>Gecko, CommonJS, <br/> JSCTypes, etc</i> </div> 
+          <div class="realbig">=</div>
+          <div style="margin-top: -1.9em"><img src="i/app.png"></div>
+        </div>
       </section>
 
       <section>
